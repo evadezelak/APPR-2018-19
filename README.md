@@ -5,10 +5,17 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2018/19
 * [![Shiny](http://mybinder.org/badge.svg)](http://beta.mybinder.org/v2/gh/evadezelak/APPR-2018-19/master?urlpath=shiny/APPR-2018-19/projekt.Rmd) Shiny
 * [![RStudio](http://mybinder.org/badge.svg)](http://beta.mybinder.org/v2/gh/evadezelak/APPR-2018-19/master?urlpath=rstudio) RStudio
 
-## Tematika
+## Letalski promet po Evropi
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V projektu bom analizirala gibanje prebivalstva preko letalskega prometa po Evropi. Osredotočila se bom na to, koliko ljudi je v posamezni državi potovalo z letalom v določenih obdobjih. 
+
+Prvo področje bo na splošno turizem. Tu se bom osredotočila predvsem na to, katere države so turistično najbolj oblegane. 
+
+Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018.
+
+Cilj: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem kvartilu leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. 
+
+Za vir podatkov bom uporabila [!Eurostat](https://ec.europa.eu/eurostat/data/database) in [!Wikipedijo](https://en.wikipedia.org/wiki/Tourism)
 
 ## Program
 
