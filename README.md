@@ -15,7 +15,7 @@ Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 
 
 Cilj: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem kvartilu leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. 
 
-Za vir podatkov bom uporabila [Eurostat](https://ec.europa.eu/eurostat/data/database) in [Wikipedijo](https://en.wikipedia.org/wiki/Tourism)
+Za vir podatkov bom uporabila [Eurostat](https://ec.europa.eu/eurostat/data/database) in [Wikipedijo](https://en.wikipedia.org/wiki/Tourism).
 
 ## Program
 
