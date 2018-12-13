@@ -1,14 +1,14 @@
 # 2. faza: Uvoz podatkov
 
-sl <- locale("sl", decimal_mark=".", grouping_mark=",")
+sl <- locale("sl", decimal_mark=".", grouping_mark=";")
 
 
 
 # Funkcija, ki uvozi podatke iz datoteke turizem_glede_na_transport.csv
 uvozi.turizem_glede_na_transport <- function() {
-  data <- read_csv("podatki/turizem_glede_na_transport.csv", col_names=c("turizem_glede_na_transport"),
+  data <- read_csv2("podatki/turizem_glede_na_transport.csv", col_names=c("turizem_glede_na_transport"),
                     locale=locale(encoding="Windows-1250"))
-  data <- data[-c(1),]
+  #data <- data[-c(1),]
   #colnames(data)[1] <- "leto"
   #data$obcina <- data$obcina %>% strapplyc("^([^/]*)") %>% unlist() %>%
     #strapplyc("([^ ]+)") %>% sapply(paste, collapse=" ") %>% unlist()
