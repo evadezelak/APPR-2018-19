@@ -24,7 +24,7 @@ Iz tega bom poskušala najti povezavo, katere regije oziroma države se najhitre
 
 Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018. 
 
-Tretja tabela bo torej vsebovala:
+Druga tabela bo torej vsebovala:
 * `države`
 * `število turistov, ki so v posamezni državi potovali preko letalskega prometa`
 
