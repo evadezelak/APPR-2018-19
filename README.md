@@ -9,28 +9,28 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2018/19
 
 V projektu bom analizirala gibanje prebivalstva preko letalskega prometa po Evropi. Osredotočila se bom na to, koliko ljudi je v posamezni državi potovalo z letalom v določenih obdobjih. 
 
-Prvo področje bo na splošno turizem. Tu se bom osredotočila predvsem na to, katere države so turistično najbolj oblegane, hkrati pa tudi na rast turizma in potovanja ljudi, ki prebivajo v določeni državi. Poskušala bom najti povezavo med samim razvojem turizma in tem, koliko turistov je v istem letu prišlo v državo. V tem delu se bom osredotočila na podatke zadnjih treh leto, torej od leta 2015 do 2017. 
+Prvo področje bo na splošno turizem. Tu se bom osredotočila predvsem na to, katere države so turistično najbolj oblegane. Pri tem se bom osredotočila na več dejavnikov ter si hkrati ogledala tudi ravoj turizma v smislu, koliko izdatkov posamezna država letno nameni za turizem ter posebej še, koliko za potniški promet turistov ter koliko enot je bilo na novo ustanovljenih v določenem letu za turizem in koliko od tega za potniški promet turistov. Poskušala bom najti povezavo med samim razvojem turizma in tem, koliko turistov je v istem letu prišlo v državo. V tem delu se bom osredotočila na podatke med leti 1995 in 2017. 
 
 Prva tabela bo vsebovala: 
 * `države`
-* `regijo`
+* `prihode turistov v posameznem letu`
+* `prihode turistov preko letalskega prometa v posameznem letu`
+* `izdatke za turizem v posameznem letu`
+* `izdatke za potniški promet v posameznem letu`
+* `število ustanovljenih enot za turizem v posameznem letu`
+* `število ustanovljenih enot za potniški promet turistov v posameznem letu`
 
-Druga tabela pa bo vsebovala: 
-* `države`
-* `število turistov, ki so prišli v državo v določenem letu`
-* `procentno rast turizma`
+Iz tega bom poskušala najti povezavo, katere regije oziroma države se najhitreje razvijajo, glede na to, koliko namenijo za samo področje turizma letno in koliko vlagajo v napredek. 
 
-Iz prve in druge tabele bom torej poskušala narediti sklep, katere regije se najhitreje razvijajo glede na procentno rast turizma in povečevanje števila turistov, ki so prišli v državo v določenem letu. 
+Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018. 
 
-Tretje področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018. 
-
-Tretja tabela bo torej vsebovala:
+Druga tabela bo torej vsebovala:
 * `države`
 * `število turistov, ki so v posamezni državi potovali preko letalskega prometa`
 
 Cilj: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem kvartilu leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. Kot sem že omenila, me bo zanimalo tudi, če je kakšna povezava med rastjo turizma v določeni državi in številom turistov, ki jo obiščejo.
 
-Za vir podatkov bom uporabila [Eurostat](https://ec.europa.eu/eurostat/data/database) in [Wikipedijo](https://en.wikipedia.org/wiki/Tourism).
+Za vir podatkov bom uporabila [Eurostat](https://ec.europa.eu/eurostat/data/database) in organizacijo [World Tourism Organization UNWTO](http://www2.unwto.org/).
 
 ## Program
 
