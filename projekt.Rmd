@@ -7,8 +7,28 @@ output:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-runtime: shiny
+#runtime: shiny
 ---
+
+<style type="text/css">
+h1.title {
+  font-size: 27px;
+  color: Grey;
+}
+h4.author{
+  color:Grey;
+  margin-bottom: 40px;
+}
+h1.naslov{
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+center.slika{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+</style>
+
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 # Če želimo nastaviti pisave v PDF-ju, odkomentiramo
@@ -24,11 +44,28 @@ source("lib/libraries.r", encoding="UTF-8")
 source("lib/rstudio.r", encoding="UTF-8")
 ```
 
-# Izbira teme
+<center> <h1 class="naslov">LETALSKI PROMET PO EVROPI</h1> </center>
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 
-![](slike/grb.png)
+V projektu bom analizirala gibanje prebivalstva preko letalskega prometa po Evropi. Osredotočila se bom na to, koliko ljudi je v posamezni državi potovalo z letalom v določenih obdobjih.
+
+<center class="slika">
+
+
+![](slike/letalo.jpg)
+
+
+</center>
+
+Prvo področje bo na splošno turizem. Tu se bom osredotočila predvsem na to, katere države so turistično najbolj oblegane. Pri tem se bom osredotočila na več dejavnikov ter si hkrati ogledala tudi ravoj turizma v smislu, koliko izdatkov posamezna država letno nameni za turizem ter posebej še, koliko za potniški promet turistov ter koliko enot je bilo na novo ustanovljenih v določenem letu za turizem in koliko od tega za potniški promet turistov. Poskušala bom najti povezavo med samim razvojem turizma in tem, koliko turistov je v istem letu prišlo v državo. V tem delu se bom osredotočila na podatke med leti 1995 in 2017.
+Iz tega bom poskušala najti povezavo, katere regije oziroma države se najhitreje razvijajo, glede na to, koliko namenijo za samo področje turizma letno in koliko vlagajo v napredek.
+
+Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018.
+
+**Cilj**: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem kvartilu leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. Kot sem že omenila, me bo zanimalo tudi, če je kakšna povezava med rastjo turizma v določeni državi in številom turistov, ki jo obiščejo.
+
+&nbsp;
+&nbsp;
 
 ***
 
@@ -38,73 +75,28 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz spletne strani organizacije World Tourism Organization UNWTO v obliki csv. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+&nbsp;
+&nbsp;
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
+1. `turizem` - podatki o turizmu za vsako državo
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
+  - `prihodi turistov` - meritev: število turistov, ki so v določeno državo prišli v posameznem letu (število),
+  - `prihodi turistov preko letalskega prometa` - meritev: število turistov, ki so v določeno državo prišli preko letalskega prometa v posameznem letu (število),
+  - `izdatki za turizem` - meritev: koliko USD določena država nameni turizmu v posameznem letu (število),
+  - `izdatki za potniški promet turistov` - meritev: koliko USD določena država nameni potniškemu prometu turistov v posameznem letu (število),
+  - `število ustanovljenih enot za turizem` - meritev: koliko enot je bilo v določeni državi ustanovljenih v namene turizma v posameznem letu (število),
+  - `število ustanovljenih enot za potniški promet turistov` - meritev: koliko enot je bilo v določeni državi ustanovljenih v namene potniškega prometa turistov v posameznem letu (število).
 
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
+&nbsp;
+&nbsp;
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
+2. `letalski promet` - podatki o letalskem prometu
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
+  - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-```
 
-***
 
-# Analiza in vizualizacija podatkov
-
-```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-source("vizualizacija/vizualizacija.r", encoding="UTF-8")
-```
-
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
-
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obcina")),
-                        aes(x=long, y=lat, group=group, fill=povprecje)) +
-  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
-  guides(fill=guide_colorbar(title="Povprečje"))
-```
-
-***
-
-# Napredna analiza podatkov
-
-```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
-```
-
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
-
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
-```
-
-***
-
-```{r shiny, echo=FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=600))
-```
