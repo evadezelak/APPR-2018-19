@@ -22,7 +22,8 @@ uvozi.turizem_glede_na_transport <- function() {
   data <- read_csv2("podatki/turizem_glede_na_transport.csv", na="..",
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", 
-         value.name="prihodi_turistov_preko_letalskega_prometa", na.rm=TRUE) %>% mutate(leto=parse_number(leto)) 
+         value.name="prihodi_turistov_preko_letalskega_prometa", na.rm=TRUE) %>%
+    mutate(leto=parse_number(as.character(leto))) 
   data$prihodi_turistov_preko_letalskega_prometa <- data$prihodi_turistov_preko_letalskega_prometa * 1000
   return(data)
 }
@@ -32,7 +33,7 @@ uvozi.turizem_na_splosno <- function() {
   data <- read_csv2("podatki/turizem_na_splosno.csv", na="..", 
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", value.name="prihodi_turistov", na.rm=TRUE) %>% 
-    mutate(leto=parse_number(leto))
+    mutate(leto=parse_number(as.character(leto)))
   data$prihodi_turistov <- data$prihodi_turistov * 1000
   return(data)
 }
@@ -42,7 +43,7 @@ uvozi.izdatki_za_turizem <- function() {
   data <- read_csv2("podatki/izdatki_za_turizem.csv", na="..", 
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", value.name="izdatki_za_turizem_v_USD", na.rm=TRUE)%>% 
-    mutate(leto=parse_number(leto))
+    mutate(leto=parse_number(as.character(leto)))
   data$izdatki_za_turizem_v_USD <- data$izdatki_za_turizem_v_USD * 1000000
   return(data)
 }
@@ -52,7 +53,7 @@ uvozi.izdatki_za_transport <- function() {
   data <- read_csv2("podatki/izdatki_za_transport.csv", na="..", 
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", value.name="izdatki_za_potniski_promet_v_USD", na.rm=TRUE) %>% 
-    mutate(leto=parse_number(leto))
+    mutate(leto=parse_number(as.character(leto)))
   data$izdatki_za_potniski_promet_v_USD <- data$izdatki_za_potniski_promet_v_USD * 1000000
   return(data)
 }
@@ -62,7 +63,7 @@ uvozi.ustanovitve_za_turizem <- function() {
   data <- read_csv2("podatki/ustanovitve_za_turizem.csv", na="..", 
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", value.name="stevilo_ustanovljenih_enot_za_turizem", na.rm=TRUE) %>% 
-    mutate(leto=parse_number(leto))
+    mutate(leto=parse_number(as.character(leto)))
 }
 
 # Funkcija, ki uvozi podatke iz datoteke ustanovitve_za_transport.csv
@@ -70,7 +71,7 @@ uvozi.ustanovitve_za_transport <- function() {
   data <- read_csv2("podatki/ustanovitve_za_transport.csv", na="..", 
                     locale=locale(encoding="Windows-1250"), skip=5) %>% .[-1, -1] %>%
     melt(id.vars="COUNTRY", variable.name="leto", value.name="stevilo_ustanovljenih_enot_za_potniski_promet", na.rm=TRUE) %>% 
-    mutate(leto=parse_number(leto))
+    mutate(leto=parse_number(as.character(leto)))
 }
 
 # Zapišimo podatke v razpredelnico
