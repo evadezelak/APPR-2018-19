@@ -98,5 +98,22 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
   - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
   - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
 
+&nbsp;
+&nbsp;
+
+***
+# Analiza in vizualizacija podatkov
+
+```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE}
+source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
+```
+
+Najprej sem se osredotočila na to, ali se je turizem preko letalskega prometa skozi leta povečeval. Predvidevam, da bo odgovor pritrdilen.
+
+```{r graf.turisti, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+print(graf.turisti)
+```
+
+Ugotovimo, da se je turizem preko letalskega prometa skozi leta res povečeval, hkrati pa vidimo, da je prihajalo do zelo velikih odstopanj pri sami rasti turizma. Zato se bom v nadaljevanju osredotočila na posamezne države. Da pa bo analiza konkretnejša, bom za primerjavo vzela eno bolj turistično razvito državo v Evropi (na primer Španija) ter jo primerjala z manj turistično razvito državo (na primer Slovenijo).
 
 
