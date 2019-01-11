@@ -83,6 +83,41 @@ ustanovitve_za_turizem <- uvozi.ustanovitve_za_turizem()
 ustanovitve_za_transport <- uvozi.ustanovitve_za_transport()
 letalski_promet <-  uvozi.letalski_promet()
 
+turizem_glede_na_transport <- turizem_glede_na_transport %>% filter(COUNTRY %in% c("Albania", 
+    "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+    "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+    "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+    "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
+
+turizem_na_splosno <- turizem_na_splosno %>% filter(COUNTRY %in% c("Albania", 
+  "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+  "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+  "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+  "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
+
+izdatki_za_turizem <- izdatki_za_turizem %>% filter(COUNTRY %in% c("Albania", 
+  "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+  "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+  "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+  "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
+
+izdatki_za_transport <- izdatki_za_transport %>% filter(COUNTRY %in% c("Albania", 
+  "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+  "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+  "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+  "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
+
+ustanovitve_za_turizem <- ustanovitve_za_turizem %>% filter(COUNTRY %in% c("Albania", 
+  "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+  "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+  "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+  "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
+
+ustanovitve_za_transport <- ustanovitve_za_transport %>% filter(COUNTRY %in% c("Albania", 
+  "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
+  "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
+  "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
+  "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine"))
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
