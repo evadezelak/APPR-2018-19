@@ -120,7 +120,7 @@ Ugotovimo, da se je turizem preko letalskega prometa skozi leta res povečeval, 
 print(graf.spa.lit)
 ```
 
-V grafu višji stolpec predstavlja podatke za Španijo, nižji pa za Litvo. Iz njega pa se jasno vidi, kako velika je razlika med turistično obiskanostjo Španije in Litve, hkrati pa vidimo tudi kako velik del predstavljajo prihodi turistov preko letalskega prometa v primerjavi s prihodi vseh turistov v državo. Iz tega lahko sklepamo tudi, da je letalski promer v Španiji veliko bolj razvit kot pa v Litvi. Hkrati pa me je presenetilo tudi dejstvo, da je v Litvi nekako prisotno konstantno število turistov (tudi glede turistev preko letalskega prometa ni velikega porasta) - razen v letih med 2004 in 2006 za katere ni bilo podatkov. To nam pove, da se Litva ni bistveno razvijala na turističnem področju, bom pa to dejstvo poskusila preveriti še preko njihovega vlaganja v sam turizem in koliko je bilo vsako leto vloženega v razvoj turizma. V drugi skrajnosti pa se je v 20 letih turizem v Španiji več kot podvojil, zato me zanima tudi, kako je bilo z vlaganjem v razvoj turizma v tej državi. 
+V grafu višji stolpec predstavlja podatke za Španijo, nižji pa za Litvo. Iz njega pa se jasno vidi, kako velika je razlika med turistično obiskanostjo Španije in Litve, hkrati pa vidimo tudi kako velik del predstavljajo prihodi turistov preko letalskega prometa v primerjavi s prihodi vseh turistov v državo. Iz tega lahko sklepamo tudi, da je letalski promer v Španiji veliko bolj razvit kot pa v Litvi. Hkrati pa me je presenetilo tudi dejstvo, da je v Litvi nekako prisotno konstantno število turistov (tudi glede turistov preko letalskega prometa ni velikega porasta) - razen v letih med 2004 in 2006 za katere ni bilo podatkov. To nam pove, da se Litva ni bistveno razvijala na turističnem področju, bom pa to dejstvo poskusila preveriti še preko njihovega vlaganja v sam turizem in koliko je bilo vsako leto vloženega v razvoj turizma. V drugi skrajnosti pa se je v 20 letih turizem v Španiji več kot podvojil, zato me zanima tudi, kako je bilo z vlaganjem v razvoj turizma v tej državi. 
 
 ```{r graf.ustanovitve.spa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(graf.ustanovitve.spa)
@@ -130,7 +130,7 @@ print(graf.ustanovitve.spa)
 print(graf.izdatki.spa)
 ```
 
-Zgornja grafa nam jasno predstavita, da je Španija skozi leta vlagala vedno več denarja v turizem, zato lahko sklepamo, da je to poglavitno vplivalo tudi na povečanje prihoda turistov. Kot vidimo se je količina izdatkov za turizem od leta 1995 do 2004 kar potrojila. Glede izdatkov za sam potniški promet sicer tudi vidimo naraščanje, a ne tako veliko kot nasplošno za turizem. Med tem ko pri ustanovitvah zaznamo neko konstantnost, zato lahko iz tega sklepamo, da je bilo ustanavljanje v Španiji vsako leto približno enako. 
+Zgornja grafa nam jasno predstavita, da je Španija skozi leta vlagala vedno več denarja v turizem, zato lahko sklepamo, da je to poglavitno vplivalo tudi na povečanje prihoda turistov. Kot vidimo se je količina izdatkov za turizem od leta 1995 do 2004 kar potrojila. Glede izdatkov za sam potniški promet sicer tudi vidimo naraščanje, a ne tako veliko kot nasplošno za turizem. Med tem, ko pri ustanovitvah zaznamo neko konstantnost, zato lahko iz tega sklepamo, da je bilo ustanavljanje v Španiji vsako leto približno enako. 
 
 ```{r graf.ustanovitve.lit, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(graf.ustanovitve.lit)
@@ -140,4 +140,18 @@ print(graf.ustanovitve.lit)
 print(graf.izdatki.lit)
 ```
 
-Medtem ko smo pri Španiji videli nekakšno konstantno rast, pa pri Litvi prihaja do veliko več odstopanj. Žal pri izdatkih vmes nekaj podatkov manka, a še vseeno se jasno vidi, da so se izdatki, ki jih Litva namenja turizmu več kot 10-krat povečali. Tudi glede ustanovitev je Litva veliko vlagala v razvoj turizma. Nam pa zgornji graf (kjer smo primerjali Španijo in Litvo) pove, da njeno prizadevanje ni bilo najbolj uspešno, saj se turizem v tej državi ni bistveno povečal. 
+Medtem, ko smo pri Španiji videli nekakšno konstantno rast, pa pri Litvi prihaja do veliko več odstopanj. Žal pri izdatkih vmes nekaj podatkov manka, a še vseeno se jasno vidi, da so se izdatki, ki jih Litva namenja turizmu več kot 10-krat povečali. Tudi glede ustanovitev je Litva veliko vlagala v razvoj turizma. Nam pa zgornji graf (kjer smo primerjali Španijo in Litvo) pove, da njeno prizadevanje ni bilo najbolj uspešno, saj se turizem v tej državi ni bistveno povečal. 
+
+Sedaj pa se osredotočimo še na sam letalski promet. Najprej me zanima, katera država v Evropi je imela tekom celotnega obdobja, ki ga preučujem, največ potnikov preko letalskega prometa.
+
+```{r graf.povprecje.po.drzavah, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+print(graf.povprecje.po.drzavah)
+```
+
+Zgornji graf torej jasno pokaže, da je Velika Britanija vodilna na področju letalskega prometa v Evropi. Sledita pa ji Nemčija in Španija. Glede na prejšnje ugotovitve lahko torej sklepamo, da je Španija ena izmed vodilnih držav v Evropi - tako glede turizma, kot tudi glede letalskega prometa. Da bo analiza bolj celostna, bom tudi sedaj izpostavila Španijo in primerjala, kako se število potnikov spreminja glede na četrtletja v posameznem letu. Predvidevam namreč, da v drugem in tretjem četrtletju največ ljudi uporablja letalski promet, saj je to čas dopustov in potovanj. 
+
+```{r graf.letalski.promet.spa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+print(graf.letalski.promet.spa)
+```
+
+Iz zgornjega grafa se jasno vidi naraščanje in upadanje letalskega prometa preko posameznega leta. To potrdi domnevo, da je v poletnih mesecih največ potnikov v letalskem prometu. 

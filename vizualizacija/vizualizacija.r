@@ -80,6 +80,32 @@ graf.izdatki.lit <- ggplot(data = zdruzena.izdatki.lit, aes(x=leto, y=Izdatki/10
   ylab("Izdatki v USD (x100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#f9a635')) +
   labs(title ="Izdatki v Litvi") + theme(plot.title = element_text(hjust = 0.5))
 
+#Osredotočimo se na sam letalski promet, in sicer najprej na povprečje po državah za vsa leta
+izracunaj.povprecje <- function() {
+  letalski_promet <- letalski_promet %>% drop_na()
+  povprecje.po.drzavah <- letalski_promet %>% group_by(Drzava) %>% 
+    summarise(Povprecje.potnikov = mean(Stevilo_potnikov)) 
+  return(povprecje.po.drzavah)
+}
+
+povprecje.po.drzavah <- izracunaj.povprecje()
+
+graf.povprecje.po.drzavah <- ggplot(data=povprecje.po.drzavah, aes(x=Drzava, y=Povprecje.potnikov/10000)) + 
+  geom_bar(stat = 'identity', position = 'dodge') + coord_flip() + labs(title ="Povprečje potnikov po državah") +
+  ylab("Povprečje potnikov(x10.000)") + theme(plot.title = element_text(hjust = 0.5))
+
+
+#Zanima me, kako se letalski promet giblje glede na cetrtletja in sicer konkretno za Španijo
+letalski.promet.spa <- letalski_promet %>% filter(Drzava %in% c("Spain"))
+
+graf.letalski.promet.spa <- ggplot(data = letalski.promet.spa, aes(x=Cetrtletje, y=Stevilo_potnikov, 
+  label=Drzava)) + geom_point(aes(x=Cetrtletje, y=Stevilo_potnikov), color = "red") + geom_line() + 
+  labs(title = "Število potnikov po četrtletjih v Španiji") + theme(plot.title = element_text(hjust = 0.5)) +
+  ylab("Število potnikov")
+graf.letalski.promet.spa
+  
+
+
 
 # Uvozimo zemljevid.
 #zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip", "OB",

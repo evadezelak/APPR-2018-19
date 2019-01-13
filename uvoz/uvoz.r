@@ -7,13 +7,13 @@ uvozi.letalski_promet <- function() {
   link <- "podatki/letalski_promet.html"
   stran <-  read_html(link)
   tabela <- stran %>% html_nodes(xpath="//table") %>% .[[1]] %>% html_table()
-  names(tabela) <- c("drzava", outer(2008:2018, 1:4, paste, sep="Q") %>% t() %>% .[-c(43, 44)])
-  tabela <- tabela %>% melt(id.vars="drzava", value.name="stevilo_potnikov") %>%
-    separate("variable", c("leto", "cetrtletje"), sep="Q") %>%
-    transmute(drzava, cetrtletje=parse_date(paste(leto, (parse_number(cetrtletje)-1)*3+1, 1, sep="-"),
+  names(tabela) <- c("Drzava", outer(2008:2018, 1:4, paste, sep="Q") %>% t() %>% .[-c(43, 44)])
+  tabela <- tabela %>% melt(id.vars="Drzava", value.name="Stevilo_potnikov") %>%
+    separate("variable", c("leto", "Cetrtletje"), sep="Q") %>%
+    transmute(Drzava, Cetrtletje=parse_date(paste(leto, (parse_number(Cetrtletje)-1)*3+1, 1, sep="-"),
                                             format="%Y-%m-%d"),
-              stevilo_potnikov=parse_number(stevilo_potnikov, na=":", locale=locale(grouping_mark=","))) %>%
-    filter(drzava != "TIMEGEO")
+              Stevilo_potnikov=parse_number(Stevilo_potnikov, na=":", locale=locale(grouping_mark=","))) %>%
+    filter(Drzava != "TIMEGEO")
   return(tabela)
 }
 
@@ -83,6 +83,13 @@ ustanovitve_za_turizem <- uvozi.ustanovitve_za_turizem()
 ustanovitve_za_transport <- uvozi.ustanovitve_za_transport()
 letalski_promet <-  uvozi.letalski_promet()
 
+
+#V tabeli letalski_promet nas moti, da je Nemčija napisana z dodatnim opisom
+levels(letalski_promet$Drzava)[levels(letalski_promet$Drzava) %in%
+  c("Germany (until 1990 former territory of the FRG)")] <- c("Germany")
+
+
+#Ker so podatki za ostale tabele za cel svet, izločimo samo evropske države
 turizem_glede_na_transport <- turizem_glede_na_transport %>% filter(COUNTRY %in% c("Albania", 
     "Austria", "Belarus", "Belgium", "Bosnia And Herzegovina", "Bulgaria", "Croatia", "Czech Republic",
     "Denmark", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Lithuania", 
