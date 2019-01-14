@@ -5,11 +5,11 @@ drzave.2016 <- turizem_glede_na_transport %>% filter(leto == 2016) %>%
   top_n(10, prihodi_turistov_preko_letalskega_prometa)
 
 graf.turisti <- ggplot(data = turizem_glede_na_transport %>% filter(COUNTRY %in% drzave.2016$COUNTRY), 
-                       aes(x = leto, y = prihodi_turistov_preko_letalskega_prometa, label = COUNTRY)) + 
-  geom_point(aes(x = leto, y = prihodi_turistov_preko_letalskega_prometa ), color = "red") +
-  geom_line(aes(group = COUNTRY, x = leto, y = prihodi_turistov_preko_letalskega_prometa, color=COUNTRY)) +
+                       aes(x = leto, y = prihodi_turistov_preko_letalskega_prometa/100000, label = COUNTRY)) + 
+  geom_point(aes(x = leto, y = prihodi_turistov_preko_letalskega_prometa/100000 ), color = "red") +
+  geom_line(aes(group = COUNTRY, x = leto, y = prihodi_turistov_preko_letalskega_prometa/100000, color=COUNTRY)) +
   labs(title ="Prihodi turistov preko letalskega prometa za posamezno leto") +
-  xlab("Leto") + ylab("Število potnikov")  + theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Leto") + ylab("Število potnikov(x100.000)")  + theme(plot.title = element_text(hjust = 0.5)) +
   theme(axis.title = element_text(size = (10)), 
           panel.background=element_rect(fill="#F5ECCE"), plot.title = element_text(size = (15)))
  
@@ -98,24 +98,25 @@ graf.povprecje.po.drzavah <- ggplot(data=povprecje.po.drzavah, aes(x=Drzava, y=P
 #Zanima me, kako se letalski promet giblje glede na cetrtletja in sicer konkretno za Španijo
 letalski.promet.spa <- letalski_promet %>% filter(Drzava %in% c("Spain"))
 
-graf.letalski.promet.spa <- ggplot(data = letalski.promet.spa, aes(x=Cetrtletje, y=Stevilo_potnikov, 
-  label=Drzava)) + geom_point(aes(x=Cetrtletje, y=Stevilo_potnikov), color = "red") + geom_line() + 
+graf.letalski.promet.spa <- ggplot(data = letalski.promet.spa, aes(x=Cetrtletje, y=Stevilo_potnikov/100000, 
+  label=Drzava)) + geom_point(aes(x=Cetrtletje, y=Stevilo_potnikov/100000), color = "red") + geom_line() + 
   labs(title = "Število potnikov po četrtletjih v Španiji") + theme(plot.title = element_text(hjust = 0.5)) +
-  ylab("Število potnikov")
+  ylab("Število potnikov(x100.000)")
 graf.letalski.promet.spa
   
 
 
 
-# Uvozimo zemljevid.
-source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
+ #Uvozimo zemljevid.
+#source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
 
-zemljevid <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
-                             "ne_50m_admin_0_countries", mapa = "zemljevidi", pot.zemljevida = "", encoding = "UTF-8") %>% 
-  fortify() %>% filter(CONTINENT == "Europe" | SOVEREIGNT %in% c("Cyprus"), long < 45 & long > -45 & lat > 30 & lat < 75)
+#zemljevid <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+ #                            "ne_50m_admin_0_countries", mapa = "zemljevidi", pot.zemljevida = "", encoding = "UTF-8") %>% 
+  #fortify() %>% filter(CONTINENT == "Europe" | SOVEREIGNT %in% c("Cyprus"), long < 45 & long > -45 & lat > 30 & lat < 75)
 
-zemljevid
+#ggplot() + geom_polygon(data=zemljevid, aes(x=long, y=lat, group=group, fill=id)) + guides(fill=FALSE)
 
-# Izračunamo povprečno velikost družine
-#povprecja <- druzine %>% group_by(obcina) %>%
- # summarise(povprecje=sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
+
+#zemljevid <- ggplot() + geom_polygon(data=left_join(zemljevid, ujemanje, by=c("NAME"="Country")),
+#  aes(x="Drzava", y="Povprecje.potnikov", group=group)) + guides(fill=guide_colorbar(title="zemljevid"))
+        
