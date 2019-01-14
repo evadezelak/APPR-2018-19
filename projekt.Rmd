@@ -122,7 +122,7 @@ print(graf.spa.lit)
 
 V grafu višji stolpec predstavlja podatke za Španijo, nižji pa za Litvo. Iz njega pa se jasno vidi, kako velika je razlika med turistično obiskanostjo Španije in Litve, hkrati pa vidimo tudi kako velik del predstavljajo prihodi turistov preko letalskega prometa v primerjavi s prihodi vseh turistov v državo. Iz tega lahko sklepamo tudi, da je letalski promer v Španiji veliko bolj razvit kot pa v Litvi. Hkrati pa me je presenetilo tudi dejstvo, da je v Litvi nekako prisotno konstantno število turistov (tudi glede turistov preko letalskega prometa ni velikega porasta) - razen v letih med 2004 in 2006 za katere ni bilo podatkov. To nam pove, da se Litva ni bistveno razvijala na turističnem področju, bom pa to dejstvo poskusila preveriti še preko njihovega vlaganja v sam turizem in koliko je bilo vsako leto vloženega v razvoj turizma. V drugi skrajnosti pa se je v 20 letih turizem v Španiji več kot podvojil, zato me zanima tudi, kako je bilo z vlaganjem v razvoj turizma v tej državi. 
 
-```{r graf.ustanovitve.spa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+``` {r graf.ustanovitve.spa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(graf.ustanovitve.spa)
 ```
 
