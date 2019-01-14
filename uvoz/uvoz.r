@@ -84,10 +84,9 @@ ustanovitve_za_transport <- uvozi.ustanovitve_za_transport()
 letalski_promet <-  uvozi.letalski_promet()
 
 
-#V tabeli letalski_promet nas moti, da je Nemčija napisana z dodatnim opisom
-levels(letalski_promet$Drzava)[levels(letalski_promet$Drzava) %in%
-  c("Germany (until 1990 former territory of the FRG)")] <- c("Germany")
-
+#V tabeli letalski_promet nas moti, da sta Nemčija in Makedonija zapisano z dodatnim opisom
+letalski_promet$Drzava <- gsub("^Germany.*$", "Germany", letalski_promet$Drzava)
+letalski_promet$Drzava <- gsub("^Former.*$", "Macedonia", letalski_promet$Drzava)
 
 #Ker so podatki za ostale tabele za cel svet, izločimo samo evropske države
 turizem_glede_na_transport <- turizem_glede_na_transport %>% filter(COUNTRY %in% c("Albania", 
