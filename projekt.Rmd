@@ -80,7 +80,7 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-1. `turizem` - podatki o turizmu za vsako državo
+1. **turizem** - podatki o turizmu za vsako državo
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
   - `prihodi turistov` - meritev: število turistov, ki so v določeno državo prišli v posameznem letu (število),
@@ -93,7 +93,7 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-2. `letalski promet` - podatki o letalskem prometu
+2. **letalski promet** - podatki o letalskem prometu
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
   - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
@@ -114,7 +114,15 @@ Najprej sem se osredotočila na to, ali se je turizem preko letalskega prometa s
 print(graf.turisti)
 ```
 
-Ugotovimo, da se je turizem preko letalskega prometa skozi leta res povečeval, hkrati pa vidimo, da je prihajalo do zelo velikih odstopanj pri sami rasti turizma. Zato se bom v nadaljevanju osredotočila na posamezne države. Da pa bo analiza konkretnejša, bom za primerjavo vzela eno bolj turistično razvito državo v Evropi (na primer Španija) ter jo primerjala z manj turistično razvito državo (na primer Litva).
+Ugotovimo, da se je turizem preko letalskega prometa skozi leta res povečeval, hkrati pa vidimo, da je prihajalo do zelo velikih odstopanj pri sami rasti turizma. Bi bilo pa dobro videti še, kakšna je situacija turizma v posamezni državi, zato si oglejmo zemljevid povprečnega letnega prihoda turistov v vsako državo.
+
+```{r zemljevid.turisti, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+print(zemljevid.turisti)
+```
+
+Iz njega opazim, da je Francija na vodilnem mestu, kar me zelo preseneti, saj v zgornjem grafu ni bila med vodilnimi. Je pa res, da glede prihoda turistov v državo manjkajo podatki za Nemčijo in še nekaj ostalih držav. Iz tega bi lahko sklepali, da ne glede na to, da v Francija nima najbolje razvitega letalskega prometa, veliko turistov pride tudi preko drugih prevoznih sredstev. 
+
+Se pa kaže veliko odtopanja med državami na zahodu Evrope in tistimi na vzhodu, zato se bom v nadaljevanju osredotočila na posamezne države. Da pa bo analiza konkretnejša, bom za primerjavo vzela eno bolj turistično razvito državo v Evropi (na primer Španija) ter jo primerjala z manj turistično razvito državo (na primer Litva).
 
 ```{r graf.spa.lit, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(graf.spa.lit)
@@ -148,10 +156,16 @@ Sedaj pa se osredotočimo še na sam letalski promet. Najprej me zanima, katera 
 print(graf.povprecje.po.drzavah)
 ```
 
-Zgornji graf torej jasno pokaže, da je Velika Britanija vodilna na področju letalskega prometa v Evropi. Sledita pa ji Nemčija in Španija. Glede na prejšnje ugotovitve lahko torej sklepamo, da je Španija ena izmed vodilnih držav v Evropi - tako glede turizma, kot tudi glede letalskega prometa. Da bo analiza bolj celostna, bom tudi sedaj izpostavila Španijo in primerjala, kako se število potnikov spreminja glede na četrtletja v posameznem letu. Predvidevam namreč, da v drugem in tretjem četrtletju največ ljudi uporablja letalski promet, saj je to čas dopustov in potovanj. 
+```{r zemljevid.povprecje.letalskega.prometa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+print(zemljevid.povprecje.letalskega.prometa)
+```
+
+Zgornji graf torej jasno pokaže, da je Velika Britanija vodilna na področju letalskega prometa v Evropi. Sledita pa ji Nemčija in Španija.Je pa to zelo lepo razvidno tudi iz zgornjega zemljevida, kjer nekako vidimo, da je Evropa razdeljena na dva dela - na zahodni, ki je letalsko bolj razvit in vzhodni, kjer je letalskega prometa veliko manj. Glede na prejšnje ugotovitve lahko torej sklepamo, da je Španija ena izmed vodilnih držav v Evropi - tako glede turizma, kot tudi glede letalskega prometa. Da bo analiza bolj celostna, bom tudi sedaj izpostavila Španijo in primerjala, kako se število potnikov spreminja glede na četrtletja v posameznem letu. Predvidevam namreč, da v drugem in tretjem četrtletju največ ljudi uporablja letalski promet, saj je to čas dopustov in potovanj. 
 
 ```{r graf.letalski.promet.spa, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(graf.letalski.promet.spa)
 ```
 
 Iz zgornjega grafa se jasno vidi naraščanje in upadanje letalskega prometa preko posameznega leta. To potrdi domnevo, da je v poletnih mesecih največ potnikov v letalskem prometu. 
+
+

@@ -14,12 +14,13 @@ graf.turisti <- ggplot(data = turizem_glede_na_transport %>% filter(COUNTRY %in%
           panel.background=element_rect(fill="#F5ECCE"), plot.title = element_text(size = (15)))
  
 #Graf za primerjavo med dobro (Španija) in slabše (Litva) razvito državo
+prebivalci.litve <- 2988400
+prebivalci.spanije <- 47059533 
 turizem.transport.span.lit <- turizem_glede_na_transport %>% filter(COUNTRY %in% c("Spain", "Lithuania"))
 turizem.span.lit <- turizem_na_splosno %>% filter(COUNTRY %in% c("Spain", "Lithuania"))
 zdruzena <- rbind(turizem.span.lit %>% rename(Prihodi=prihodi_turistov) %>% mutate(Kategorija="Vsi prihodi"),
                   turizem.transport.span.lit %>% rename(Prihodi=prihodi_turistov_preko_letalskega_prometa) %>%
                     mutate(Kategorija="Prihodi preko letalskega prometa"))
-
 graf.spa.lit <- ggplot(data = zdruzena, aes(x= leto, y = Prihodi/1000, fill = Kategorija, group = COUNTRY)) +
   geom_col(position = "dodge") + ylab("Prihodi (x1000)") + xlab("Leto") +
   labs(title ="Primerjava Španije in Litve") + theme(plot.title = element_text(hjust = 0.5))
@@ -90,9 +91,14 @@ izracunaj.povprecje <- function() {
 
 povprecje.po.drzavah <- izracunaj.povprecje()
 
+#uredimo drzave glede na povprečno število potnikov skozi preučevano obdobje
+povprecje.po.drzavah$Drzava <- factor(povprecje.po.drzavah$Drzava, levels = povprecje.po.drzavah$Drzava[order(povprecje.po.drzavah$Povprecje.potnikov)])
+
 graf.povprecje.po.drzavah <- ggplot(data=povprecje.po.drzavah, aes(x=Drzava, y=Povprecje.potnikov/10000)) + 
   geom_bar(stat = 'identity', position = 'dodge') + coord_flip() + labs(title ="Povprečje potnikov po državah") +
   ylab("Povprečje potnikov(x10.000)") + theme(plot.title = element_text(hjust = 0.5))
+
+graf.povprecje.po.drzavah
 
 
 #Zanima me, kako se letalski promet giblje glede na cetrtletja in sicer konkretno za Španijo
@@ -107,16 +113,44 @@ graf.letalski.promet.spa
 
 
 
- #Uvozimo zemljevid.
-#source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
+#Uvozimo zemljevid.
+source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
 
-#zemljevid <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
- #                            "ne_50m_admin_0_countries", mapa = "zemljevidi", pot.zemljevida = "", encoding = "UTF-8") %>% 
-  #fortify() %>% filter(CONTINENT == "Europe" | SOVEREIGNT %in% c("Cyprus"), long < 45 & long > -45 & lat > 30 & lat < 75)
+zemljevid <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+                            "ne_50m_admin_0_countries", mapa = "zemljevidi", pot.zemljevida = "", encoding = "UTF-8") %>% 
+  fortify() %>% filter(CONTINENT == "Europe" | SOVEREIGNT %in% c("Cyprus"), long < 45 & long > -45 & lat > 30 & lat < 75)
 
-#ggplot() + geom_polygon(data=zemljevid, aes(x=long, y=lat, group=group, fill=id)) + guides(fill=FALSE)
+colnames(zemljevid)[11] <- 'drzava'
+zemljevid$drzava <- as.character(zemljevid$drzava)
+zemljevid$drzava[zemljevid$drzava == "Republic of Serbia"] <- "Serbia"
 
 
-#zemljevid <- ggplot() + geom_polygon(data=left_join(zemljevid, ujemanje, by=c("NAME"="Country")),
-#  aes(x="Drzava", y="Povprecje.potnikov", group=group)) + guides(fill=guide_colorbar(title="zemljevid"))
+#Narišimo zemljevid povprečnega števila potnikov preko letalskega prometa po državah
+zemljevid.povprecje.letalskega.prometa <- ggplot() +
+  geom_polygon(data = povprecje.po.drzavah %>% right_join(zemljevid, by = c("Drzava" = "drzava")),
+  aes(x = long, y = lat, group = group, fill = Povprecje.potnikov/10000), alpha = 0.8, color = "black")+
+  scale_fill_gradient2(low = "green", mid = "yellow", high = "red", midpoint = 80) + 
+  xlab("") + ylab("") + ggtitle("Povprečno število potnikov preko letalskega prometa (x10.000)")+
+  guides(fill=guide_legend(title="Povprečje")) + theme(plot.title = element_text(hjust = 0.5))
+
+zemljevid.povprecje.letalskega.prometa
+#Narišimo zemljevid povprečnega števila prihodov turistov v državo
+izracunaj.povprecje1 <- function() {
+  turizem_na_splosno <- turizem_na_splosno %>% drop_na()
+  povprecje.turizma <- turizem_na_splosno %>% group_by(COUNTRY) %>% 
+    summarise(Povprecje.turistov = mean(prihodi_turistov)) 
+  return(povprecje.turizma)
+}
+
+povprecje.turizma <- izracunaj.povprecje1()
+povprecje.turizma$COUNTRY[povprecje.turizma$COUNTRY == "Czech Republic"] <- "Czechia"
+povprecje.turizma$COUNTRY[povprecje.turizma$COUNTRY == "Russian Federation"] <- "Russia"
+
+zemljevid.turisti <- ggplot() +
+  geom_polygon(data = povprecje.turizma %>% right_join(zemljevid, by = c("COUNTRY" = "drzava")),
+  aes(x = long, y = lat, group = group, fill = Povprecje.turistov/100000), alpha = 0.8, color = "black")+
+  scale_fill_gradient2(low = "yellow", mid = "green", high = "blue", midpoint = 80) + 
+  xlab("") + ylab("") + ggtitle("Povprečno število turistov (x100.000)")+
+  guides(fill=guide_legend(title="Povprečje")) + theme(plot.title = element_text(hjust = 0.5))
         
+zemljevid.turisti
