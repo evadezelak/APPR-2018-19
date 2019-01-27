@@ -1,17 +1,17 @@
 library(shiny)
 
-shinyUI(fluidPage(
+fluidPage(
+  titlePanel(""),
   
-  titlePanel("Slovenske občine"),
+  tabPanel("Graf",
+           sidebarPanel(
+             selectInput("drzava", label = "Izberi državo", 
+                         choices = unique(turizem_na_splosno$COUNTRY))),
+           mainPanel(plotOutput("graf1"))),
   
-  tabsetPanel(
-      tabPanel("Velikost družine",
-               DT::dataTableOutput("druzine")),
-      
-      tabPanel("Število naselij",
-               sidebarPanel(
-                  uiOutput("pokrajine")
-                ),
-               mainPanel(plotOutput("naselja")))
-    )
-))
+  tabPanel("Zemljevid",
+           sidebarPanel(
+             selectInput("leto1", label = "Izberi četrtletje", 
+                         choices = unique(letalski_promet$Cetrtletje))),
+           mainPanel(plotOutput("zemljevid1")))
+)

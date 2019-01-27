@@ -7,7 +7,7 @@ output:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-#runtime: shiny
+runtime: shiny
 ---
 
 <style type="text/css">
@@ -183,4 +183,19 @@ print(graf.letalski.promet.spa)
 
 Iz zgornjega grafa se jasno vidi naraščanje in upadanje letalskega prometa preko posameznega leta. To potrdi domnevo, da je v poletnih mesecih največ potnikov v letalskem prometu. 
 
+&nbsp;
+&nbsp;
 
+***
+# Naprednejša analiza
+
+Za konec pa sem v aplikaciji Shiny pripravila še graf in zemljevid.
+
+Na prvem grafu lahko opazujemo gibanje prihoda turistov preko letalskega prometa in prihoda vseh turistov v preučevanem obdobju, ob čemer lahko izbiramo, katero državo si želimo ogledati.
+
+Zemljevid pa prikazuje gibanje števila potnikov preko letalskega prometa za države Evrope, kjer lahko izbiramo za katero četrtletje si želim ogledati podatke. 
+
+***
+```{r shiny, echo = FALSE}
+shinyAppDir("shiny", options=list(width="100%", height=1000))
+```

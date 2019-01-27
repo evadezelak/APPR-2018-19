@@ -178,3 +178,9 @@ zemljevid.skupine <- ggplot() + geom_polygon(data=zemljevid %>% left_join(skupin
             ggtitle("Države po skupinah")+ guides(fill=guide_legend(title="Skupine")) + 
             theme(plot.title = element_text(hjust = 0.5)) 
 
+# Pripravljene tabele za napredno analizo
+
+turizem <- rbind(turizem_na_splosno %>% rename(Prihodi=prihodi_turistov) %>% mutate(Kategorija="Vsi prihodi"),
+                 turizem_glede_na_transport %>% rename(Prihodi=prihodi_turistov_preko_letalskega_prometa) %>%
+                   mutate(Kategorija="Prihodi preko letalskega prometa"))
+
