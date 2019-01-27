@@ -17,6 +17,20 @@ uvozi.letalski_promet <- function() {
   return(tabela)
 }
 
+# Funkcija, ki uvozi število prebivalcev po državah iz Wikipedije
+uvozi.prebivalstvo <- function() {
+  link <- "https://en.wikipedia.org/wiki/Demographics_of_Europe"
+  stran <- html_session(link) %>% read_html()
+  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>% 
+    html_table(fill = TRUE, dec = ",") %>% .[[1]]
+  # V tabeli želimo imeti le stolpec držav in število prebivalcev, zato ostale odstranimo
+  tabela <- tabela[, ! names(tabela) %in% c("Area(km2)", "Population density(per km2)", "Capital"), drop = F]
+  colnames(tabela) <- c("Drzava", "Stevilo_prebivalcev")
+  tabela <- tabela %>% transmute(Drzava, Stevilo_prebivalcev=parse_number(Stevilo_prebivalcev, na=":", 
+                                              locale=locale(grouping_mark=",")))
+  return(tabela)
+}
+
 # Funkcija, ki uvozi podatke iz datoteke turizem_glede_na_transport.csv
 uvozi.turizem_glede_na_transport <- function() {
   data <- read_csv2("podatki/turizem_glede_na_transport.csv", na="..",
@@ -82,6 +96,7 @@ izdatki_za_transport <- uvozi.izdatki_za_transport()
 ustanovitve_za_turizem <- uvozi.ustanovitve_za_turizem()
 ustanovitve_za_transport <- uvozi.ustanovitve_za_transport()
 letalski_promet <-  uvozi.letalski_promet()
+prebivalstvo <- uvozi.prebivalstvo()
 
 
 #V tabeli letalski_promet nas moti, da sta Nemčija in Makedonija zapisano z dodatnim opisom
@@ -130,6 +145,8 @@ ustanovitve_za_transport <- ustanovitve_za_transport %>% filter(COUNTRY %in% c("
   "Luxembourg", "Malta", "Monaco", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", 
   "Russian Federation", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine",
   "United Kingdom", "Cyprus"))
+
+
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo

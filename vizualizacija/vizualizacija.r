@@ -13,18 +13,25 @@ graf.turisti <- ggplot(data = turizem_glede_na_transport %>% filter(COUNTRY %in%
   theme(axis.title = element_text(size = (10)), 
           panel.background=element_rect(fill="#F5ECCE"), plot.title = element_text(size = (15)))
  
-#Graf za primerjavo med dobro (Španija) in slabše (Litva) razvito državo
-prebivalci.litve <- 2988400
-prebivalci.spanije <- 47059533 
+# Graf za primerjavo med dobro (Španija) in slabše (Litva) razvito državo
+# Da bo graf bolj realen, bom vzela relativne podatke, zato bom število turistov, ki pridejo v državo,
+# delila s število prebivalcev tiste države
+prebivalci.litve1 <- prebivalstvo %>% filter(Drzava == "Lithuania")
+prebivalci.litve <- prebivalci.litve1[1,"Stevilo_prebivalcev"]
+prebivalci.spanije1 <- prebivalstvo %>% filter(Drzava == "Spain")
+prebivalci.spanije <- prebivalci.spanije1[1,"Stevilo_prebivalcev"]
 turizem.transport.span.lit <- turizem_glede_na_transport %>% filter(COUNTRY %in% c("Spain", "Lithuania"))
 turizem.span.lit <- turizem_na_splosno %>% filter(COUNTRY %in% c("Spain", "Lithuania"))
 zdruzena <- rbind(turizem.span.lit %>% rename(Prihodi=prihodi_turistov) %>% mutate(Kategorija="Vsi prihodi"),
                   turizem.transport.span.lit %>% rename(Prihodi=prihodi_turistov_preko_letalskega_prometa) %>%
                     mutate(Kategorija="Prihodi preko letalskega prometa"))
-graf.spa.lit <- ggplot(data = zdruzena, aes(x= leto, y = Prihodi/1000, fill = Kategorija, group = COUNTRY)) +
-  geom_col(position = "dodge") + ylab("Prihodi (x1000)") + xlab("Leto") +
-  labs(title ="Primerjava Španije in Litve") + theme(plot.title = element_text(hjust = 0.5))
 
+zdruzena$Prihodi[zdruzena$COUNTRY == "Spain"] <- zdruzena$Prihodi[zdruzena$COUNTRY == "Spain"] / prebivalci.spanije
+zdruzena$Prihodi[zdruzena$COUNTRY == "Lithuania"] <- zdruzena$Prihodi[zdruzena$COUNTRY == "Lithuania"] / prebivalci.litve
+
+graf.spa.lit <- ggplot(data = zdruzena, aes(x= leto, y = Prihodi, fill = Kategorija, group = COUNTRY)) +
+  geom_col(position = "dodge") + ylab("Prihodi") + xlab("Leto") +
+  labs(title ="Primerjava Španije in Litve") + theme(plot.title = element_text(hjust = 0.5))
 
 #Grafa za pregled razvoja turizma in transporta v Španiji  
 ustanovitve.turizem.spa <- ustanovitve_za_turizem %>% filter(COUNTRY %in% c("Spain"))
@@ -37,7 +44,7 @@ zdruzena.ustanovitve.spa <- rbind(ustanovitve.turizem.spa %>%
 
 graf.ustanovitve.spa <- ggplot(data = zdruzena.ustanovitve.spa, aes(x=leto, y=Stevilo_ustanovljenih/1000, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
-  ylab("Število ustanovljenih enot (x1000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#f9a635')) +
+  ylab("Število ustanovljenih enot (x1000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Ustanavljanje v Španiji") + theme(plot.title = element_text(hjust = 0.5))
 
 izdatki.turizem.spa <- izdatki_za_turizem %>% filter(COUNTRY %in% c("Spain"))
@@ -50,7 +57,7 @@ zdruzena.izdatki.spa <- rbind(izdatki.turizem.spa %>%
 
 graf.izdatki.spa <- ggplot(data = zdruzena.izdatki.spa, aes(x=leto, y=Izdatki/100000000, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
-  ylab("Izdatki v USD (x100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#f9a635')) +
+  ylab("Izdatki v USD (x100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Izdatki v Španiji") + theme(plot.title = element_text(hjust = 0.5)) 
 
 
@@ -65,7 +72,7 @@ zdruzena.ustanovitve.lit <- rbind(ustanovitve.turizem.lit %>%
 
 graf.ustanovitve.lit <- ggplot(data = zdruzena.ustanovitve.lit, aes(x=leto, y=Stevilo_ustanovljenih/100, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
-  ylab("Število ustanovljenih enot (x100)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#f9a635')) +
+  ylab("Število ustanovljenih enot (x100)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Ustanavljanje v Litvi") + theme(plot.title = element_text(hjust = 0.5))
 
 izdatki.turizem.lit <- izdatki_za_turizem %>% filter(COUNTRY %in% c("Lithuania"))
@@ -78,7 +85,7 @@ zdruzena.izdatki.lit <- rbind(izdatki.turizem.lit %>%
 
 graf.izdatki.lit <- ggplot(data = zdruzena.izdatki.lit, aes(x=leto, y=Izdatki/100000000, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
-  ylab("Izdatki v USD (x100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#f9a635')) +
+  ylab("Izdatki v USD (x100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Izdatki v Litvi") + theme(plot.title = element_text(hjust = 0.5))
 
 #Osredotočimo se na sam letalski promet, in sicer najprej na povprečje po državah za vsa leta
@@ -96,9 +103,8 @@ povprecje.po.drzavah$Drzava <- factor(povprecje.po.drzavah$Drzava, levels = povp
 
 graf.povprecje.po.drzavah <- ggplot(data=povprecje.po.drzavah, aes(x=Drzava, y=Povprecje.potnikov/10000)) + 
   geom_bar(stat = 'identity', position = 'dodge') + coord_flip() + labs(title ="Povprečje potnikov po državah") +
-  ylab("Povprečje potnikov(x10.000)") + theme(plot.title = element_text(hjust = 0.5))
+  ylab("Povprečje potnikov(x10.000)") + xlab("Država") + theme(plot.title = element_text(hjust = 0.5))
 
-graf.povprecje.po.drzavah
 
 
 #Zanima me, kako se letalski promet giblje glede na cetrtletja in sicer konkretno za Španijo
@@ -107,8 +113,8 @@ letalski.promet.spa <- letalski_promet %>% filter(Drzava %in% c("Spain"))
 graf.letalski.promet.spa <- ggplot(data = letalski.promet.spa, aes(x=Cetrtletje, y=Stevilo_potnikov/100000, 
   label=Drzava)) + geom_point(aes(x=Cetrtletje, y=Stevilo_potnikov/100000), color = "red") + geom_line() + 
   labs(title = "Število potnikov po četrtletjih v Španiji") + theme(plot.title = element_text(hjust = 0.5)) +
-  ylab("Število potnikov(x100.000)")
-graf.letalski.promet.spa
+  ylab("Število potnikov(x100.000)") + xlab("Četrtletje")
+
   
 
 
@@ -153,4 +159,18 @@ zemljevid.turisti <- ggplot() +
   xlab("") + ylab("") + ggtitle("Povprečno število turistov (x100.000)")+
   guides(fill=guide_legend(title="Povprečje")) + theme(plot.title = element_text(hjust = 0.5))
         
-zemljevid.turisti
+
+# Naredimo zemljevid, ki bo države razvrstil v skupine
+drzave.2017 <- letalski_promet %>% filter(Cetrtletje == "2017-01-01")
+drzave.2017 <- drzave.2017[, ! names(drzave.2017) %in% c("Cetrtletje"), drop = F]
+drzave.2017 <- drzave.2017[-c(34),]
+drzave.norm <- drzave.2017 %>% select(-Drzava) %>% scale()
+rownames(drzave.norm) <- drzave.2017$Drzava
+k <- kmeans(na.omit(drzave.norm), 2, nstart = 100000)
+skupine <- data.frame(Drzava=drzave.2017$Drzava, skupina=factor(k$cluster))
+
+zemljevid.skupine <- ggplot() + geom_polygon(data=zemljevid %>% left_join(skupine, by=c("NAME_LONG"="Drzava")),
+            aes(x=long, y=lat, group=group, fill=skupina)) + xlab("") + ylab("") + 
+            ggtitle("Države po skupinah")+ guides(fill=guide_legend(title="Skupini")) + 
+            theme(plot.title = element_text(hjust = 0.5))
+
