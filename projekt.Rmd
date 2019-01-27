@@ -80,7 +80,7 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-1. **turizem** - podatki o turizmu za vsako državo
+1. **Turizem** - podatki o turizmu za vsako državo
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
   - `prihodi turistov` - meritev: število turistov, ki so v določeno državo prišli v posameznem letu (število),
@@ -93,7 +93,7 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-2. **letalski promet** - podatki o letalskem prometu
+2. **Letalski promet** - podatki o letalskem prometu
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
   - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
@@ -101,7 +101,7 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-3. **prebivalstvo** - podatki o številu prebivalcev
+3. **Prebivalstvo** - podatki o številu prebivalcev
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `število prebivalcev` - meritev: število prebivalcev določene Evropske države (število)
   
@@ -172,6 +172,8 @@ Zgornji graf torej jasno pokaže, da je Velika Britanija vodilna na področju le
 ```{r zemljevid.skupine, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
 print(zemljevid.skupine)
 ```
+
+Torej iz zgornjega zemljevida se nekako vidi delitev Evrope na zahodni in vzhodni del, kjer rdeča barva predstavlja države, ki imajo manj letalskega prometa, modra pa tiste, kjer je letalski promet bolj razširjen.
 
 Glede na prejšnje ugotovitve lahko torej sklepamo, da je Španija ena izmed vodilnih držav v Evropi - tako glede turizma, kot tudi glede letalskega prometa. Da bo analiza bolj celostna, bom tudi sedaj izpostavila Španijo in primerjala, kako se število potnikov spreminja glede na četrtletja v posameznem letu. Predvidevam namreč, da v drugem in tretjem četrtletju največ ljudi uporablja letalski promet, saj je to čas dopustov in potovanj. 
 
