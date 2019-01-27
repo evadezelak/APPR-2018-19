@@ -50,7 +50,7 @@ uvozi.zemljevid <- function(url, ime.zemljevida, pot.zemljevida="",
                                       function(x)
                                         paste(c(x[1:(length(x)-1)], tolower(x[length(x)])),
                                               collapse="."))))
-  zemljevid <- readOGR(shp, ime.zemljevida)
+  zemljevid <- readOGR(shp, ime.zemljevida, verbose = FALSE)
 
   if (!is.null(encoding)) {
     loc <- locale(encoding=encoding)

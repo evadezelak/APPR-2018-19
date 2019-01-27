@@ -46,7 +46,7 @@ zdruzena.ustanovitve.spa <- rbind(ustanovitve.turizem.spa %>%
         rename(Stevilo_ustanovljenih=stevilo_ustanovljenih_enot_za_potniski_promet) %>% 
         mutate(Kategorija="Ustanovitve za potniški promet"))
 
-graf.ustanovitve.spa <- ggplot(data = zdruzena.ustanovitve.spa, aes(x=leto, y=Stevilo_ustanovljenih/1000, 
+graf.ustanovitve.spa <- ggplot(data = zdruzena.ustanovitve.spa, aes(x=factor(leto), y=Stevilo_ustanovljenih/1000, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
   ylab("Število ustanovljenih enot (x 1000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Ustanavljanje v Španiji") + theme(plot.title = element_text(hjust = 0.5))
@@ -59,7 +59,7 @@ zdruzena.izdatki.spa <- rbind(izdatki.turizem.spa %>%
                             rename(Izdatki=izdatki_za_potniski_promet_v_USD) %>% 
                             mutate(Kategorija="Izdatki za potniški promet"))
 
-graf.izdatki.spa <- ggplot(data = zdruzena.izdatki.spa, aes(x=leto, y=Izdatki/100000000, 
+graf.izdatki.spa <- ggplot(data = zdruzena.izdatki.spa, aes(x=factor(leto), y=Izdatki/100000000, 
   fill= Kategorija, group = COUNTRY)) + geom_col(position = "dodge") + xlab("Leto") +
   ylab("Izdatki v USD (x 100.000.000)") + scale_fill_manual("Kategorija",values = c('#0023a0', '#ffcc80')) +
   labs(title ="Izdatki v Španiji") + theme(plot.title = element_text(hjust = 0.5)) 
@@ -124,7 +124,7 @@ graf.letalski.promet.spa <- ggplot(data = letalski.promet.spa, aes(x=Cetrtletje,
 
 
 #Uvozimo zemljevid.
-source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
+#source("https://raw.githubusercontent.com/jaanos/APPR-2018-19/master/lib/uvozi.zemljevid.r")
 
 zemljevid <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
                             "ne_50m_admin_0_countries", mapa = "zemljevidi", pot.zemljevida = "", encoding = "UTF-8") %>% 
