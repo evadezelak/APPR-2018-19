@@ -191,11 +191,11 @@ Iz zgornjega grafa se jasno vidi naraščanje in upadanje letalskega prometa pre
 
 Za konec pa sem v aplikaciji Shiny pripravila še graf in zemljevid.
 
-Na prvem grafu lahko opazujemo gibanje prihoda turistov preko letalskega prometa in prihoda vseh turistov v preučevanem obdobju, ob čemer lahko izbiramo, katero državo si želimo ogledati.
+Na prvem grafu lahko opazujemo gibanje prihoda turistov preko letalskega prometa in prihoda vseh turistov v preučevanem obdobju, ob čemer lahko izbiramo, katero državo si želimo ogledati. Če pogledamo podrobneje vidimo, da je pri Islandiji zelo zanimivo dejstvo, da je število vseh turistev skoraj enako številu turistov, ki pridejo v državo preko letalskega prometa, kar je povsem logično, saj je Islandija otok, zato je v kakšni drugi obliki prevoza precej težje dostopna. Na drugi strani pa je na primer Francija, kjer je število turistov preko letalskega prometa precej manjše od števila vseh turistov. Francija je namreč dostopna tudi preko drugih oblik transporta.
 
 Zemljevid pa prikazuje gibanje števila potnikov preko letalskega prometa za države Evrope, kjer lahko izbiramo za katero četrtletje si želim ogledati podatke. 
 
 ***
 ```{r shiny, echo = FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=1000))
+shinyAppDir("shiny", options=list(width="100%", height=900))
 ```
