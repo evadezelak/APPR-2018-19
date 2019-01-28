@@ -23,4 +23,15 @@ function(input, output) {
     print(zemljevid.letalski.promet)
   })  
   
+  output$graf2 <- renderPlot({
+    podatki <- turizem1 %>% filter(leto == input$leto)
+    mls <- loess(data=podatki, prihodi_turistov_preko_letalskega_prometa ~ prihodi_turistov)
+    graf.povezava <- ggplot(podatki, aes(x=prihodi_turistov/100000, 
+      y=prihodi_turistov_preko_letalskega_prometa/100000)) + geom_point(shape=8) + xlab("Prihodi turistov ( x 100.000)") +
+      ylab("Prihodi turistov preko letalsekga prometa (x 100.000)")  + 
+      labs(title = "Povezava med prihodom vseh turistov in prihodom turistov preko letalskega prometa") +
+      theme(plot.title = element_text(hjust = 0.5)) + geom_smooth(method="loess")
+    print(graf.povezava)
+  })
+  
 }

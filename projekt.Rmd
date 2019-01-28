@@ -80,31 +80,98 @@ Podatke o letalskem prometu in turizmu sem uvozila iz Eurostata kot HTML in iz s
 &nbsp;
 &nbsp;
 
-1. **Turizem** - podatki o turizmu za vsako državo
+1. **Turizem na splošno** - podatki o turizmu za vsako državo
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
-  - `prihodi turistov` - meritev: število turistov, ki so v določeno državo prišli v posameznem letu (število),
-  - `prihodi turistov preko letalskega prometa` - meritev: število turistov, ki so v določeno državo prišli preko letalskega prometa v posameznem letu (število),
-  - `izdatki za turizem` - meritev: koliko USD določena država nameni turizmu v posameznem letu (število),
-  - `izdatki za potniški promet turistov` - meritev: koliko USD določena država nameni potniškemu prometu turistov v posameznem letu (število),
-  - `število ustanovljenih enot za turizem` - meritev: koliko enot je bilo v določeni državi ustanovljenih v namene turizma v posameznem letu (število),
+  - `prihodi turistov` - meritev: število turistov, ki so v določeno državo prišli v posameznem letu (število).
+  
+```{r turizem_na_splosno, echo=FALSE, message=FALSE}
+kable(head(turizem_na_splosno), align="l")
+```  
+ 
+&nbsp;
+&nbsp;
+
+2. **Turizem glede na transport** - podatki o številu turistov, ki pridejo v državo preko letalskega prometa
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
+  - `prihodi turistov preko letalskega prometa` - meritev: število turistov, ki so v določeno državo prišli preko letalskega prometa v posameznem letu (število).
+  
+```{r turizem_glede_na_transport, echo=FALSE, message=FALSE}
+kable(head(turizem_glede_na_transport), align="l")
+```  
+ 
+&nbsp;
+&nbsp;
+
+3. **Izdratki za turizem** - podatki o višini izdatkov vsake države za turizem
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
+  - `izdatki za turizem` - meritev: koliko USD določena država nameni turizmu v posameznem letu (število).
+
+```{r izdatki_za_turizem, echo=FALSE, message=FALSE}
+kable(head(izdatki_za_turizem), align="l")
+```  
+ 
+&nbsp;
+&nbsp;  
+
+4. **Izdatki za transport** - podatki o višini izdatkov vsake države, ki jih nameni letalskemu prometu
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
+  - `izdatki za potniški promet turistov` - meritev: koliko USD določena država nameni potniškemu prometu turistov v posameznem letu (število).
+ 
+```{r izdatki_za_transport, echo=FALSE, message=FALSE}
+kable(head(izdatki_za_transport), align="l")
+```  
+ 
+&nbsp;
+&nbsp; 
+
+5. **Ustanovitve za turizem** - podatki o številu ustanovljenih enot v namene turizma
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
+  - `število ustanovljenih enot za turizem` - meritev: koliko enot je bilo v določeni državi ustanovljenih v namene turizma v posameznem letu (število).
+
+```{r ustanovitve_za_turizem, echo=FALSE, message=FALSE}
+kable(head(ustanovitve_za_turizem), align="l")
+```  
+ 
+&nbsp;
+&nbsp; 
+ 
+6. **Ustanovitve za transport** - podatki o številu ustanovljenih enot za letalski promet
+  - `država` - spremenljivka: ime države (neurejen faktor),
+  - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
   - `število ustanovljenih enot za potniški promet turistov` - meritev: koliko enot je bilo v določeni državi ustanovljenih v namene potniškega prometa turistov v posameznem letu (število).
 
+```{r ustanovitve_za_transport, echo=FALSE, message=FALSE}
+kable(head(ustanovitve_za_transport), align="l")
+```  
+ 
 &nbsp;
 &nbsp;
 
-2. **Letalski promet** - podatki o letalskem prometu
+7. **Letalski promet** - podatki o letalskem prometu
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
   - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
 
+```{r letalski_promet, echo=FALSE, message=FALSE}
+kable(head(letalski_promet), align="l")
+```
+
 &nbsp;
 &nbsp;
 
-3. **Prebivalstvo** - podatki o številu prebivalcev
+8. **Prebivalstvo** - podatki o številu prebivalcev
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `število prebivalcev` - meritev: število prebivalcev določene Evropske države (število)
-  
+
+```{r prebivalstvo, echo=FALSE, message=FALSE}
+kable(head(prebivalstvo), align="l")
+```
+
 &nbsp;
 &nbsp;
 
@@ -189,13 +256,23 @@ Iz zgornjega grafa se jasno vidi naraščanje in upadanje letalskega prometa pre
 ***
 # Naprednejša analiza
 
-Za konec pa sem v aplikaciji Shiny pripravila še graf in zemljevid.
+Za konec pa sem v aplikaciji Shiny pripravila še dva grafa in zemljevid.
 
 Na prvem grafu lahko opazujemo gibanje prihoda turistov preko letalskega prometa in prihoda vseh turistov v preučevanem obdobju, ob čemer lahko izbiramo, katero državo si želimo ogledati. Če pogledamo podrobneje vidimo, da je pri Islandiji zelo zanimivo dejstvo, da je število vseh turistev skoraj enako številu turistov, ki pridejo v državo preko letalskega prometa, kar je povsem logično, saj je Islandija otok, zato je v kakšni drugi obliki prevoza precej težje dostopna. Na drugi strani pa je na primer Francija, kjer je število turistov preko letalskega prometa precej manjše od števila vseh turistov. Francija je namreč dostopna tudi preko drugih oblik transporta.
 
 Zemljevid pa prikazuje gibanje števila potnikov preko letalskega prometa za države Evrope, kjer lahko izbiramo za katero četrtletje si želim ogledati podatke. 
 
+Na zadnjem grafu pa sem napovedala, kakšen bi bil prihod turistov preko letalskega prometa ob danem številu vseh turistov med leti 1995 do 2017.
+
 ***
 ```{r shiny, echo = FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=900))
+shinyAppDir("shiny", options=list(width="100%", height=1300))
 ```
+
+&nbsp;
+&nbsp;
+
+***
+# Zaključek
+
+Ugotovila sem, da je letalski promet skozi preučevano obdobje res napredoval, kot sem tudi predvidila na začetku. Ljudje čedalje več uporabljajo letala, saj so praktična in hitra, po drugi strani pa moramo upoštevati tudi dejstvo, da je v zadnjih par letih letalski promet postal cenejši, posledično pa tudi bolj dostopen vsem ljudem. 

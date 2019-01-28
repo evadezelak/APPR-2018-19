@@ -184,3 +184,5 @@ turizem <- rbind(turizem_na_splosno %>% rename(Prihodi=prihodi_turistov) %>% mut
                  turizem_glede_na_transport %>% rename(Prihodi=prihodi_turistov_preko_letalskega_prometa) %>%
                    mutate(Kategorija="Prihodi preko letalskega prometa"))
 
+turizem1 <- merge(turizem_na_splosno, turizem_glede_na_transport)
+
