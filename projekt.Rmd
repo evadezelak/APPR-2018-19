@@ -62,7 +62,7 @@ Iz tega bom poskušala najti povezavo, katere regije oziroma države se najhitre
 
 Drugo področje pa bo sama analiza letalskega prometa v Evropi, kjer bo zajetih 34 držav. Časovno se bom osredotočila na 10 let, analizirala pa bom po četrtletjih. Torej podatki se bodo začeli s prvim četrtletjem leta 2008 in končali z drugim četrtletjem leta 2018.
 
-**Cilj**: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem kvartilu leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. Kot sem že omenila, me bo zanimalo tudi, če je kakšna povezava med rastjo turizma v določeni državi in številom turistov, ki jo obiščejo.
+**Cilj**: Predvidevam, da je število potnikov skozi leta naraščalo, hkrati pa tudi, da je v drugem in tretjem četrtletju leta največ potnikov v letalskem prometu, saj je to čas dopustov. Prav tako bom poskušala najti povezavo med tem, da je evropska država močno turistično obljudena in tem, da ima veliko potnikov, ki potujejo preko letalskega prometa. Kot sem že omenila, me bo zanimalo tudi, če je kakšna povezava med rastjo turizma v določeni državi in številom turistov, ki jo obiščejo.
 
 &nbsp;
 &nbsp;
@@ -104,7 +104,7 @@ kable(head(turizem_glede_na_transport), align="l")
 &nbsp;
 &nbsp;
 
-3. **Izdratki za turizem** - podatki o višini izdatkov vsake države za turizem
+3. **Izdatki za turizem** - podatki o višini izdatkov vsake države za turizem
   - `država` - spremenljivka: ime države (neurejen faktor),
   - `leto` - spremenljivka: vsebovana so leta med 1995 in 2017,
   - `izdatki za turizem` - meritev: koliko USD določena država nameni turizmu v posameznem letu (število).
@@ -154,7 +154,7 @@ kable(head(ustanovitve_za_transport), align="l")
 
 7. **Letalski promet** - podatki o letalskem prometu
   - `država` - spremenljivka: ime države (neurejen faktor),
-  - `obdobje` - sprememnljivka: obdobja so razdeljena na kvartile, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
+  - `obdobje` - spremenljivka: obdobja so razdeljena na četrtletja, zajetih pa je 10 let in sicer z začetkom prvega četrtletja 2008 do konca drugega četrtletja 2018,
   - `število potnikov` - meritev: število ljudi, ki je v določeni državi uporabilo letalski promet (število).
 
 ```{r letalski_promet, echo=FALSE, message=FALSE}
@@ -240,7 +240,7 @@ Zgornji graf torej jasno pokaže, da je Velika Britanija vodilna na področju le
 print(zemljevid.skupine)
 ```
 
-Torej iz zgornjega zemljevida se nekako vidi delitev Evrope na zahodni in vzhodni del, kjer rdeča barva predstavlja države, ki imajo manj letalskega prometa, modra pa tiste, kjer je letalski promet bolj razširjen.
+Torej iz zgornjega zemljevida se nekako vidi delitev Evrope na zahodni in vzhodni del, kjer rdeča modra predstavlja države, ki imajo manj letalskega prometa, rdeča pa tiste, kjer je letalski promet bolj razširjen.
 
 Glede na prejšnje ugotovitve lahko torej sklepamo, da je Španija ena izmed vodilnih držav v Evropi - tako glede turizma, kot tudi glede letalskega prometa. Da bo analiza bolj celostna, bom tudi sedaj izpostavila Španijo in primerjala, kako se število potnikov spreminja glede na četrtletja v posameznem letu. Predvidevam namreč, da v drugem in tretjem četrtletju največ ljudi uporablja letalski promet, saj je to čas dopustov in potovanj. 
 
@@ -275,4 +275,4 @@ shinyAppDir("shiny", options=list(width="100%", height=1300))
 ***
 # Zaključek
 
-Ugotovila sem, da je letalski promet skozi preučevano obdobje res napredoval, kot sem tudi predvidila na začetku. Ljudje čedalje več uporabljajo letala, saj so praktična in hitra, po drugi strani pa moramo upoštevati tudi dejstvo, da je v zadnjih par letih letalski promet postal cenejši, posledično pa tudi bolj dostopen vsem ljudem. 
+Ugotovila sem, da je letalski promet skozi preučevano obdobje res napredoval, kot sem tudi predvidela na začetku. Ljudje čedalje več uporabljajo letala, saj so praktična in hitra, po drugi strani pa moramo upoštevati tudi dejstvo, da je v zadnjih par letih letalski promet postal cenejši, posledično pa tudi bolj dostopen vsem ljudem. 
