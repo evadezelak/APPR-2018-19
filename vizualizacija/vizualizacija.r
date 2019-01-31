@@ -168,6 +168,7 @@ zemljevid.turisti <- ggplot() +
 drzave.2017 <- letalski_promet %>% filter(Cetrtletje == "2017-01-01")
 drzave.2017 <- drzave.2017[, ! names(drzave.2017) %in% c("Cetrtletje"), drop = F]
 drzave.2017 <- drzave.2017[-c(34),]
+drzave.2017$Drzava[drzave.2017$Drzava == "Czechia"] <- "Czech Republic"
 drzave.norm <- drzave.2017 %>% select(-Drzava) %>% scale()
 rownames(drzave.norm) <- drzave.2017$Drzava
 k <- kmeans(na.omit(drzave.norm), 2, nstart = 100000)
